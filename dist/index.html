@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Menu</title>
+
+    <link href="../src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+          scroll-behavior: smooth;
+        }
+        body{
+            font-family:  "Poppins", sans-serif;
+        }
+        
+        @media (max-width: 776px){
+       
+            .navbar{
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 80px;
+                left: 50%;
+                transform: translatex(-50%);
+                justify-content: space-between;
+            }
+            .header_sm{
+                height: 320px;
+                position: fixed;
+                height: 320px;
+                background-color: white;
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <!-- header section -->
+    
+    <header id="header_section" class="fixed md:absolute w-full h-[80px] md:bg-transparent z-50 bg-black">
+        <nav class="flex items-center md:text-black  text-white px-10 xl:px-44 md:pt-14 pt-6 justify-between">
+            <div class="font-bold text-2xl"><a href="#home">Aoud</a></div>
+
+            <i id="menuBar" onclick=showNavbarMenu() class="fa-solid fa-bars text-2xl md:hidden cursor-pointer"></i>
+            
+            <ul id="navBar" class="md:flex justify-center text-white items-center gap-10 text-sm hidden">
+                <li><a href="#home" class="hover:text-red-400">Home</a></li>
+                <li><a href="#about" class="hover:text-red-400">About</a></li>
+                <li><a href="#menu" class="hover:text-red-400">Menu</a></li>
+                <li><a href="#footer" class="hover:text-red-400">Contact</a></li>
+            </ul>
+              
+            <i id="closeBar" onclick='hideNavbarMenu()' class="fa-solid fa-xmark text-2xl hidden md:hidden cursor-pointer"></i>
+
+        </nav>
+    </header>
+
+    <!-- hero section -->
+    
+    <section id="home" class="grid md:grid-cols-2 gap-12 grid-cols-1 relative h-screen">
+        <div class="pt-72 xl:ps-44 md:ps-10 px-10 md:text-start text-center">
+            <h1 class="lg:text-4xl text-3xl font-extrabold leading-normal text-white z-100 md:text-black">
+                Delicious meals,<br>made with love
+            </h1>
+            <p class="leading-normal mt-4 md:text-gray-400 text-white z-100">Enjoy delicious food. Quick, tasty, and satisfying. Book now and treat yourself to a great meal.</p>
+            <button class="bg-red-500 hover:bg-red-600 py-4 px-6 text-white mt-6"><a href="#booking">Book A table</a></button>
+            <img src="../src/img/image2.jpg" class="absolute inset-0 -z-20 w-full h-full object-cover md:hidden "/>
+            <div class="absolute inset-0 bg-black opacity-40 -z-10 md:hidden"></div>
+        </div>
+
+        <div class="-z-10 relative md:block hidden">
+            <img src="../src/img/image2.jpg" class="w-full h-full object-cover"/>
+            <div class="absolute inset-0 bg-black opacity-20"></div>
+        </div>
+
+    </section>
+
+    <!-- about section -->
+
+    <section id="about" class="grid grid- md:grid-cols-2 gap-12 grid-cols-1 relative min-h-[410px] bg-gray-50 mb-14">
+        
+        <div class="xl:flex items-center xl:ms-44 order-2 md:order-1">
+            <img src="../src/img/image1.jpg" alt="" class="w-full h-full object-cover">
+        </div>
+        <div class="pt-20 order-1 md:order-2 mr-8">
+            <h1 class="text-2xl font-bold text-red-400 md:text-start text-center">About</h1>
+            <h2 class="text-3xl font-bold text-slate-500 mb-8 md:text-start text-center">Welcome to Aoud Restaurant</h2>
+            <p class="pb-4 sm:mb-10 px-10 md:px-0 lg:mr-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, vero ab. Ut distinctio, consequatur suscipit obcaecati vel excepturi quis facere nesciunt id aperiam officia rem quo alias recusandae officiis voluptates adipisci aliquid temporibus! Beatae, mollitia cumque non repellendus ex alias sint aliquam iure iusto ullam asperiores? Commodi illum delectus inventore?</p>
+        </div>
+    </section>
+
+    <!-- menu section -->
+
+    <section id="menu" class="max-w-5xl mx-auto  md:py-12 px-10">
+        <h1 class="text-2xl font-bold text-red-400 text-center">Menu</h1>
+        <h2 class="text-3xl font-bold text-slate-500 mb-8 text-center">Explore a variety of delicious dishes crafted </h2>
+        <!-- Tab Navigation -->
+        <div class="flex justify-center space-x-4 mb-8 ">
+            <button id="appetizers-btn" onclick="showMenu('appetizers','appetizers-btn')" class="menu-btn px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Appetizers</button>
+            <button id="main-courses-btn" onclick="showMenu('main-courses', 'main-courses-btn')" class="menu-btn px-4 py-2 bg-white text-red-500 border border-red-500  hover:bg-red-500 hover:text-white">Main Courses</button>
+            <button id="desserts-btn" onclick="showMenu('desserts', 'desserts-btn')" class="menu-btn px-4 py-2 bg-white text-red-500 border border-red-500  hover:bg-red-500 hover:text-white">Desserts</button>
+            
+            <!-- <button onclick="showMenu('main-courses')" class="px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Main Courses</button>
+            <button onclick="showMenu('desserts')" class="px-4 py-2 bg-red-500 text-white  hover:bg-red-600">Desserts</button> -->
+        </div>
+
+        <!-- Appetizers Section -->
+        <div id="appetizers" class="menu-section">
+        <!-- <h2 class="text-2xl font-semibold text-gray-700 mb-4">Appetizers</h2> -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+                <img src="../src/img/brusheta.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+                <div class="flex-1">
+                    <h3 class="text-lg font-semibold flex justify-between">Bruschetta<span class="text-lg font-semibold text-gray-800">$8.99</span></h3>
+                    <p class="text-gray-600 text-xs">Toasted bread with fresh tomatoes and basil</p>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+                <img src="../src/img/garlic-bread.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+                <div class="flex-1">
+                    <h3 class="text-lg font-semibold flex justify-between">Garlic Bread<span class="text-lg font-semibold text-gray-800">$5.99</span></h3>
+                    <p class="text-gray-600 text-xs">Grilled with butter and garlic</p>
+                </div>
+              </div>
+
+              <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+                <img src="../src/img/brusheta.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+                <div class="flex-1">
+                    <h3 class="text-lg font-semibold flex justify-between">Bruschetta<span class="text-lg font-semibold text-gray-800">$8.99</span></h3>
+                    <p class="text-gray-600 text-xs">Toasted bread with fresh tomatoes and basil</p>
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <!-- Main Courses Section -->
+        <div id="main-courses" class="menu-section hidden">
+        <!-- <h2 class="text-2xl font-semibold text-gray-700 mb-4">Main Courses</h2> -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <img src="../src/img/grilled-salamon.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+              <div class="flex-1">
+                  <h3 class="text-lg font-semibold flex justify-between">Grilled Salmon<span class="text-lg font-semibold text-gray-800">$15.99</span></h3>
+                  <p class="text-gray-600 text-xs">Served with lemon and herbs</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <img src="../src/img/steak-fries.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+              <div class="flex-1">
+                  <h3 class="text-lg font-semibold flex justify-between">Steak and Fries<span class="text-lg font-semibold text-gray-800">$18.99</span></h3>
+                  <p class="text-gray-600 text-xs">Juicy steak with crispy fries</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <img src="../src/img/steak-fries.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+              <div class="flex-1">
+                  <h3 class="text-lg font-semibold flex justify-between">Steak and Fries<span class="text-lg font-semibold text-gray-800">$18.99</span></h3>
+                  <p class="text-gray-600 text-xs">Juicy steak with crispy fries</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <img src="../src/img/grilled-salamon.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+              <div class="flex-1">
+                  <h3 class="text-lg font-semibold flex justify-between">Grilled Salmon<span class="text-lg font-semibold text-gray-800">$15.99</span></h3>
+                  <p class="text-gray-600 text-xs">Served with lemon and herbs</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Desserts Section -->
+        <div id="desserts" class="menu-section hidden">
+        <!-- <h2 class="text-2xl font-semibold text-gray-700 mb-4">Desserts</h2> -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <img src="../src/img/tiramisu.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+              <div class="flex-1">
+                  <h3 class="text-lg font-semibold flex justify-between">Tiramisu<span class="text-lg font-semibold text-gray-800">$7.99</span></h3>
+                  <p class="text-gray-600 text-xs">Traditional Italian dessert</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <img src="../src/img/chocolate-cake.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+              <div class="flex-1">
+                  <h3 class="text-lg font-semibold flex justify-between">Chocolate Cake<span class="text-lg font-semibold text-gray-800">$7.99</span></h3>
+                  <p class="text-gray-600 text-xs">Rich and decadent chocolate cake</p>
+              </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <img src="../src/img/chocolate-cake.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+              <div class="flex-1">
+                  <h3 class="text-lg font-semibold flex justify-between">Chocolate Cake<span class="text-lg font-semibold text-gray-800">$7.99</span></h3>
+                  <p class="text-gray-600 text-xs">Rich and decadent chocolate cake</p>
+              </div>
+            </div>
+            
+
+            <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+              <img src="../src/img/tiramisu.PNG" alt="brusheta" class="w-[60px] h-[60px] border rounded-full mr-4">
+              <div class="flex-1">
+                  <h3 class="text-lg font-semibold flex justify-between">Tiramisu<span class="text-lg font-semibold text-gray-800">$7.99</span></h3>
+                  <p class="text-gray-600 text-xs">Traditional Italian dessert</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+    </section>
+
+    <!-- testimonial section -->
+
+    <section class="bg-white py-12">
+        <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <h1 class="text-2xl font-bold text-red-400 text-center">Testimony</h1>
+            <h2 class="text-3xl font-bold text-slate-500 mb-8 text-center">
+                Read trusted reviews from our customers
+            </h2>
+      
+          <div class="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+            <blockquote class="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+              <div class="flex items-center gap-4">
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                  class="size-14 rounded-full object-cover"
+                />
+      
+                <div>
+                  <div class="flex justify-center gap-0.5 text-green-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                  </div>
+      
+                  <p class="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+                </div>
+              </div>
+      
+              <p class="mt-4 text-gray-700">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
+                consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius accusamus
+                error officiis atque voluptates magnam!
+              </p>
+            </blockquote>
+      
+            <blockquote class="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+              <div class="flex items-center gap-4">
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                  class="size-14 rounded-full object-cover"
+                />
+      
+                <div>
+                  <div class="flex justify-center gap-0.5 text-green-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                  </div>
+      
+                  <p class="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+                </div>
+              </div>
+      
+              <p class="mt-4 text-gray-700">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
+                consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius accusamus
+                error officiis atque voluptates magnam!
+              </p>
+            </blockquote>
+      
+            <blockquote class="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+              <div class="flex items-center gap-4">
+                <img
+                  alt=""
+                  src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                  class="size-14 rounded-full object-cover"
+                />
+      
+                <div>
+                  <div class="flex justify-center gap-0.5 text-green-500">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="size-5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                      />
+                    </svg>
+                  </div>
+      
+                  <p class="mt-0.5 text-lg font-medium text-gray-900">Paul Starr</p>
+                </div>
+              </div>
+      
+              <p class="mt-4 text-gray-700">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa sit rerum incidunt, a
+                consequuntur recusandae ab saepe illo est quia obcaecati neque quibusdam eius accusamus
+                error officiis atque voluptates magnam!
+              </p>
+            </blockquote>
+          </div>
+        </div>
+    </section>
+
+    <!-- Booking section -->
+
+    <section id="booking" class="grid grid- md:grid-cols-2 gap-12 grid-cols-1 relative bg-gray-50">
+        <div class="lg:flex items-center lg:ms-44">
+            <img src="../src/img/booking.jpg" alt="" class="w-full h-[600px] object-cover">
+        </div>
+        <div class="px-10 py-10">
+            <h1 class="text-2xl font-bold text-red-400 text-start ">Book a Table</h1>
+            <h2 class="text-3xl font-bold text-slate-500 mb-8 text-start ">Welcome to Aoud Restaurant</h2>
+            <form action="" class="grid grid-cols-2 gap-x-10 gap-y-4 pt-6 pb-4">
+                <div class="flex flex-col gap-3">
+                    <label for="" class="font-bold">Name</label>
+                    <input type="text" placeholder="Your Name" class="border py-2 px-3 text-slate-400">
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label for="" class="font-bold">Email</label>
+                    <input type="email" placeholder="Your Email" class="border py-2 px-3 text-slate-400">
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label for="" class="font-bold">Phone</label>
+                    <input type="tel" placeholder="Phone" class="border py-2 px-3 text-slate-400">
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label for="" class="font-bold">Date</label>
+                    <input type="date" placeholder="Date" class="border py-2 px-3 text-slate-400">
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label for="" class="font-bold">Time</label>
+                    <input type="time" placeholder="Time" class="border py-2 px-3 text-slate-400">
+                </div>
+                <div class="flex flex-col gap-3">
+                    <label for="" class="font-bold">Person</label>
+                    <select class="border py-2 px-3 text-slate-400">
+                      <option selected hidden disabled>Person</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>+4</option>
+                    </select>
+                </div>
+            </form>
+            <button class="bg-red-500 hover:bg-red-600 py-4 px-6 text-white mt-6">Book A table</button>
+        </div>
+    </section>
+
+    <!-- section footer -->
+    <section id="footer" class="pt-10 pb-4 bg-black md:px-36 px-20">
+        <div class="grid lg:grid-cols-3 gap-8 text-center">
+            <div class="sm:px-16 lg:px-0">
+                <h2 class="text-white font-bold pb-4">Contact us</h2>
+                <p class="text-gray-400 cursor-pointer"><i class="fa-solid fa-location-pin mr-3"></i> Location</p>
+                <p class="text-gray-400 py-1"><i class="fa-solid fa-phone mr-3"></i>Call +212 66612551</p>
+                <p class="text-gray-400"><i class="fa-solid fa-envelope mr-3"></i>demo@gmail.com</p>
+            </div>
+            <div class="sm:px-16 lg:px-0">
+                <h2 class="text-white font-bold pb-4">Aoud</h2>
+                <p class="text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, fuga.</p>
+                <div class="flex text-white justify-center gap-6 text-lg mt-4">
+                  <i class="fa-brands fa-facebook cursor-pointer hover:text-red-500"></i>
+                  <i class="fa-brands fa-instagram cursor-pointer hover:text-red-500"></i>
+                  <i class="fa-brands fa-twitter cursor-pointer hover:text-red-500"></i>
+                </div>
+              </div>
+            <div class="sm:px-16 lg:px-0">
+                <h2 class="text-white font-bold pb-4">Open Hours</h2>
+                <ul class="text-white ">
+                    <li class="flex justify-between mx-0 sm:mx-5 text-gray-400">Monday <span>12:00 - 1:30</span></li>
+                    <li class="flex justify-between mx-0 sm:mx-5 text-gray-400">Tuesday <span>12:00 - 1:30</span></li>
+                    <li class="flex justify-between mx-0 sm:mx-5 text-gray-400">Wednesday <span>12:00 - 1:30</span></li>
+                    <li class="flex justify-between mx-0 sm:mx-5 text-gray-400">Thursday <span>12:00 - 1:30</span></li>
+                    <li class="flex justify-between mx-0 sm:mx-5 text-gray-400">Friday <span>12:00 - 1:30</span></li>
+                    <li class="flex justify-between mx-0 sm:mx-5 text-gray-400">Saturday <span>12:00 - 1:30</span></li>
+                    <li class="flex justify-between mx-0 sm:mx-5 text-gray-400">Sunday <span>12:00 - 1:30</span></li>
+                </ul>
+            </div>
+        </div>
+        <p class="text-gray-500 pt-6 text-center text-sm">Copyright ©2024 All rights reserved</p>
+    </section>
+
+  
+
+  <!-- JavaScript to handle tab switching -->
+  <script>
+    const element = document.getElementById('navBar');
+    const header = document.getElementById('header_section')
+    const menuBar = document.getElementById('menuBar')
+    const closeBar = document.getElementById('closeBar')
+
+    function hideNavbarMenu(){
+        element.classList.remove('navbar')
+        element.classList.add('hidden')
+        header.classList.remove('header_sm')
+        header.classList.add('h-[80px]')
+        closeBar.classList.add('hidden')
+        menuBar.classList.remove('hidden')
+    }
+    function showNavbarMenu(){
+        element.classList.remove('hidden')
+        element.classList.add('navbar')
+        header.classList.add('header_sm')
+        header.classList.remove('h-[80px]')
+        closeBar.classList.remove('hidden')
+        menuBar.classList.add('hidden')
+    }
+
+    function showMenu(menuId, menuBtn) {
+      // Hide all menu sections
+      document.querySelectorAll('.menu-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+      document.querySelectorAll('.menu-btn').forEach(section => {
+        section.classList.remove('bg-red-500', 'text-white', 'hover:bg-red-600', 'bg-white', 'text-red-500', 'border', 'border-red-500', 'hover:bg-red-500', 'hover:text-white');
+        section.classList.add('bg-white', 'text-red-500', 'border', 'border-red-500', 'hover:bg-red-500', 'hover:text-white');
+
+      });
+
+
+      
+      // Show the selected menu section
+      document.getElementById(menuId).classList.remove('hidden');
+      document.getElementById(menuBtn).classList.remove('bg-white', 'text-red-500', 'border', 'border-red-500', 'hover:bg-red-500', 'hover:text-white');
+      document.getElementById(menuBtn).classList.add('bg-red-500', 'text-white',  'hover:bg-red-600');
+
+    }
+  </script>
+
+</body>
+</html>
+
