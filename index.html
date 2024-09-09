@@ -479,15 +479,16 @@
                 </div>
                 <div class="flex flex-col gap-3">
                     <label for="" class="font-bold">Date</label>
-                    <input type="date" placeholder="Date" class="border py-2 px-3 text-slate-400">
+                    <!-- <input type="date" placeholder="Date" class="border py-2 px-3 text-slate-400"> -->
+                    <input class="border py-2 px-3 text-slate-400"  placeholder="Date" class="textbox-n" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" />
                 </div>
                 <div class="flex flex-col gap-3">
                     <label for="" class="font-bold">Time</label>
-                    <input type="time" placeholder="Time" class="border py-2 px-3 text-slate-400">
+                    <input type="text" placeholder="Time" class="border py-2 px-3 text-slate-400">
                 </div>
                 <div class="flex flex-col gap-3">
                     <label for="" class="font-bold">Person</label>
-                    <select class="border py-2 px-3 text-slate-400">
+                    <select class="border py-2 px-3 text-slate-400 bg-white">
                       <option selected hidden disabled>Person</option>
                       <option>1</option>
                       <option>2</option>
